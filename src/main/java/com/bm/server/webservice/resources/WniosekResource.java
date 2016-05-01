@@ -2,8 +2,8 @@ package com.bm.server.webservice.resources;
 
 import com.bm.server.database.HistoriazmianManager;
 import com.bm.server.database.WniosekManager;
-import com.bm.server.model.MerytorykaWniosku;
-import com.bm.server.model.StanyWniosku;
+import com.bm.server.service.MerytorykaWniosku;
+import com.bm.server.service.StanyWniosku;
 import com.bm.server.model.Wniosek;
 
 import javax.inject.Inject;

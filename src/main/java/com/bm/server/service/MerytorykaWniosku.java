@@ -1,5 +1,7 @@
-package com.bm.server.model;
+package com.bm.server.service;
 
+
+import com.bm.server.model.Wniosek;
 
 public class MerytorykaWniosku {
 

@@ -1,4 +1,4 @@
-package com.bm.server.model;
+package com.bm.server.service;
 
 import java.util.HashMap;
 import java.util.Map;
