@@ -2,12 +2,10 @@ package com.bm.server.model;
 
 import org.junit.Test;
 
-import static com.bm.server.model.MerytorykaWniosku.sprawdzPoprawnoscDanych;
+import static com.bm.server.service.MerytorykaWniosku.sprawdzPoprawnoscDanych;
 import static org.junit.Assert.assertEquals;
 
-/**
- * Created by KAKE on 2016-04-30.
- */
+
 public class MerytorykaWnioskuTest {
     @Test
     public void sprawdzPoprawnoscDanychTest() throws Exception {

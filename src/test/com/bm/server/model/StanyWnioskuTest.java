@@ -1,23 +1,13 @@
 package com.bm.server.model;
 
-import org.junit.Before;
+import com.bm.server.service.StanyWniosku;
 import org.junit.Test;
 
-import static com.bm.server.model.StanyWniosku.nastepstwoStanow;
+import static com.bm.server.service.StanyWniosku.nastepstwoStanow;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 public class StanyWnioskuTest {
-    @Before
-    public void setUp() throws Exception {
-
-    }
-
-
-    @Test
-    public void testStan() throws Exception {
-
-    }
 
     @Test
     public void nastepstwoStanowTest() throws Exception {
