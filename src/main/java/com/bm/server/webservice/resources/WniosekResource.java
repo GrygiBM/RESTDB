@@ -68,7 +68,7 @@ public class WniosekResource {
     public Response edit(@PathParam("id") Integer id, Wniosek entity) {
 
         if (StanyWniosku.nastepstwoStanow(wniosekManager.find(id).getStan(), entity.getStan())) {
-            if (MerytorykaWniosku.sprawdzPoprawnoscDanych(entity, wniosekManager.find(id))) {
+            if (MerytorykaWniosku.sprawdzPoprawnoscDanych(wniosekManager.find(id),entity)) {
                 wniosekManager.editWniosek(entity);
                 historiazmianManager.addHistory(entity.getId(), StanyWniosku.StanType.valueOf(entity.getStan()).name(), entity.getInfo());
                 return Response.status(Response.Status.ACCEPTED).build();

@@ -35,44 +35,46 @@ public class StanyWniosku {
         }
     }
 
-    public static boolean nastepstwoStanow(int stanPoprzedniInt, int stanAktualnyInt) {
+    public static boolean nastepstwoStanow(int stanPoprzedniBazyInt, int stanAktualnyRestInt) {
 
 
         // DIAGRAM STANÓW
 
-        StanType stanPoprzedni = StanType.valueOf(stanPoprzedniInt);
-        StanType stanAktualny = StanType.valueOf(stanAktualnyInt);
+        StanType stanBazy = StanType.valueOf(stanPoprzedniBazyInt);
+        StanType stanREST = StanType.valueOf(stanAktualnyRestInt);
 
-        if (stanPoprzedni == StanType.CREATED) {
-            if (stanAktualny == StanType.DELETED || stanAktualny == StanType.CREATED
-                    || stanAktualny == StanType.VERIFIED) {
+        if (stanBazy == StanType.CREATED) {
+            if (stanREST == StanType.DELETED || stanREST == StanType.CREATED
+                    || stanREST == StanType.VERIFIED) {
                 return true;
             } else
                 return false;
         }
         ;
 
-        if (stanPoprzedni == StanType.VERIFIED) {
-            if (stanAktualny == StanType.REJECTED || stanAktualny == StanType.ACCEPTED || stanAktualny == StanType.VERIFIED) {
+        if (stanBazy == StanType.VERIFIED) {
+            if (stanREST == StanType.REJECTED || stanREST == StanType.ACCEPTED || stanREST == StanType.VERIFIED) {
                 return true;
             } else
                 return false;
         }
 
-        if (stanPoprzedni == StanType.ACCEPTED) {
-            if (stanAktualny == StanType.REJECTED || stanAktualny == StanType.PUBLISHED) {
+        if (stanBazy == StanType.ACCEPTED) {
+            if (stanREST == StanType.REJECTED || stanREST == StanType.PUBLISHED) {
                 return true;
             }
+            else
+                return false;
         }
 
-        if (stanPoprzedni == StanType.PUBLISHED) {
+        if (stanBazy == StanType.PUBLISHED) {
             return false;
         }
 
-        if (stanPoprzedni == StanType.REJECTED)
+        if (stanBazy == StanType.REJECTED)
             return false;
 
-        if (stanPoprzedni == StanType.DELETED)
+        if (stanBazy == StanType.DELETED)
             return false;
 
         return false;

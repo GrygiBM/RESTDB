@@ -5,11 +5,18 @@ import com.bm.server.model.Wniosek;
 
 public class MerytorykaWniosku {
 
-    public static boolean sprawdzPoprawnoscDanych(Wniosek wniosekWejsciowy, Wniosek wniosekAktualny) {
-        int stan = wniosekWejsciowy.getStan();
+    public static boolean sprawdzPoprawnoscDanych(Wniosek wniosekBaza, Wniosek wniosekRest) {
+
+        int stan = wniosekRest.getStan();
+
+        // Zmiana nazwy niedozwolona ?
+//        if (!wniosekRest.getNazwa().equals(wniosekBaza.getNazwa())) {
+//                return false;
+//        }
+
 
         // Zmiana tresci
-        if (!wniosekWejsciowy.getTresc().equals(wniosekAktualny.getTresc())) {
+        if (!wniosekRest.getTresc().equals(wniosekBaza.getTresc())) {
 
             if (stan == StanyWniosku.StanType.CREATED.getValue()
                     ||
@@ -20,7 +27,7 @@ public class MerytorykaWniosku {
         }
 
         // Przyczyna usuwania / odrzucania
-        if (wniosekWejsciowy.getInfo().equals("")) {
+        if (wniosekRest.getInfo().equals("")) {
 
             if (stan == StanyWniosku.StanType.REJECTED.getValue()
                     ||
@@ -31,9 +38,9 @@ public class MerytorykaWniosku {
         }
 
         // Unikalny numer
-        if (stan == StanyWniosku.StanType.ACCEPTED.getValue())
+        if (stan == StanyWniosku.StanType.PUBLISHED.getValue())
         {
-            wniosekWejsciowy.setNumer(wniosekAktualny.getId());
+            wniosekRest.setNumer(wniosekBaza.getId());
         }
 
         return true;
