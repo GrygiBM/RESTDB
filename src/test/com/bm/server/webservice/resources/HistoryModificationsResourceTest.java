@@ -7,11 +7,11 @@ import org.junit.Before;
 import org.junit.Test;
 
 
-public class HistoriazmianResourceTest extends JerseyTest {
+public class HistoryModificationsResourceTest extends JerseyTest {
 
     @Override
     protected javax.ws.rs.core.Application configure() {
-        return new ResourceConfig(HistoriazmianResource.class);
+        return new ResourceConfig(HistoryModificationsResource.class);
     }
 
 

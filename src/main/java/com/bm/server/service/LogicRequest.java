@@ -3,9 +3,9 @@ package com.bm.server.service;
 
 import com.bm.server.model.Wniosek;
 
-public class MerytorykaWniosku {
+public class LogicRequest {
 
-    public static boolean sprawdzPoprawnoscDanych(Wniosek wniosekBaza, Wniosek wniosekRest) {
+    public static boolean validateData(Wniosek wniosekBaza, Wniosek wniosekRest) {
 
         int stan = wniosekRest.getStan();
 
@@ -18,9 +18,9 @@ public class MerytorykaWniosku {
         // Zmiana tresci
         if (!wniosekRest.getTresc().equals(wniosekBaza.getTresc())) {
 
-            if (stan == StanyWniosku.StanType.CREATED.getValue()
+            if (stan == StateRequest.StateType.CREATED.getValue()
                     ||
-                    stan == StanyWniosku.StanType.VERIFIED.getValue())
+                    stan == StateRequest.StateType.VERIFIED.getValue())
                 return true;
             else
                 return false;
@@ -29,16 +29,16 @@ public class MerytorykaWniosku {
         // Przyczyna usuwania / odrzucania
         if (wniosekRest.getInfo().equals("")) {
 
-            if (stan == StanyWniosku.StanType.REJECTED.getValue()
+            if (stan == StateRequest.StateType.REJECTED.getValue()
                     ||
-                    stan == StanyWniosku.StanType.DELETED.getValue())
+                    stan == StateRequest.StateType.DELETED.getValue())
                 return false;
             else
                 return true;
         }
 
         // Unikalny numer
-        if (stan == StanyWniosku.StanType.PUBLISHED.getValue())
+        if (stan == StateRequest.StateType.PUBLISHED.getValue())
         {
             wniosekRest.setNumer(wniosekBaza.getId());
         }

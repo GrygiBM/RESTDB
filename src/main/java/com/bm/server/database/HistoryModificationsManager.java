@@ -14,12 +14,12 @@ import java.util.List;
 
 
 @Singleton
-public class HistoriazmianManager {
+public class HistoryModificationsManager {
 
     private EntityManager entityManager;
 
     @Inject
-    public HistoriazmianManager(EntityManager entityManager) {
+    public HistoryModificationsManager(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
 
@@ -70,7 +70,7 @@ public class HistoriazmianManager {
         entityManager.remove(entityManager.merge(entity));
     }
 
-    public List<Historiazmian> getByWniosek(int idWniosek) {
+    public List<Historiazmian> getByRequest(int idWniosek) {
         TypedQuery<Historiazmian> typedQuery = entityManager.createNamedQuery("Historiazmian.findByIdWniosek", Historiazmian.class)
                 .setParameter("idWniosek", idWniosek);
         return typedQuery.getResultList();

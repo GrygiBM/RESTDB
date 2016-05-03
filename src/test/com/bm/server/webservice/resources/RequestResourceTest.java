@@ -9,7 +9,7 @@ import org.junit.Test;
 
 import javax.ws.rs.core.Application;
 
-public class WniosekResourceTest extends JerseyTest {
+public class RequestResourceTest extends JerseyTest {
 
 
 
@@ -17,7 +17,7 @@ public class WniosekResourceTest extends JerseyTest {
 
     @Override
     protected Application configure() {
-        return new ResourceConfig(WniosekResource.class) {
+        return new ResourceConfig(RequestResource.class) {
         };
     }
 
