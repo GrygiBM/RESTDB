@@ -17,7 +17,12 @@ public class RequestManager {
 
     @Inject
     public RequestManager(EntityManager entityManager) {
+
         this.entityManager = entityManager;
+//        EntityTransaction transaction = entityManager.getTransaction();
+//            transaction.begin();
+//            entityManager.persist(new Wniosek("WniosekT","Wniosek testowy "));
+//            transaction.commit();
     }
 
     public List<Wniosek> getAllRequests() {

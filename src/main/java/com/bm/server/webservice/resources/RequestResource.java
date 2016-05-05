@@ -2,9 +2,9 @@ package com.bm.server.webservice.resources;
 
 import com.bm.server.database.HistoryModificationsManager;
 import com.bm.server.database.RequestManager;
-import com.bm.server.service.LogicRequest;
-import com.bm.server.service.StateRequest;
 import com.bm.server.model.Wniosek;
+import com.bm.server.service.StateRequest;
+import com.bm.server.service.ValidateRequest;
 
 import javax.inject.Inject;
 import javax.ws.rs.*;
@@ -28,7 +28,7 @@ public class RequestResource {
 
     @GET
     public Response getAllRequests(@QueryParam("nazwa") String nazwa,
-                                        @QueryParam("stan") int stan) {
+                                   @QueryParam("stan") int stan) {
 
 
         if (nazwa != null && stan > 0)
@@ -67,12 +67,11 @@ public class RequestResource {
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public Response edit(@PathParam("id") Integer id, Wniosek entity) {
 
-        if (StateRequest.sequentState(requestManager.find(id).getStan(), entity.getStan())) {
-            if (LogicRequest.validateData(requestManager.find(id),entity)) {
-                requestManager.editRequest(entity);
-                historyModificationsManager.addHistory(entity.getId(), StateRequest.StateType.valueOf(entity.getStan()).name(), entity.getInfo());
-                return Response.status(Response.Status.ACCEPTED).build();
-            }
+
+        if (ValidateRequest.Validate(requestManager.find(id), entity)) {
+            requestManager.editRequest(entity);
+            historyModificationsManager.addHistory(entity.getId(), StateRequest.StateType.valueOf(entity.getStan()).name(), entity.getInfo());
+            return Response.status(Response.Status.ACCEPTED).build();
         }
         return Response.status(Response.Status.NOT_MODIFIED).build();
 

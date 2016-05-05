@@ -7,6 +7,8 @@ public class LogicRequest {
 
     public static boolean validateData(Wniosek wniosekBaza, Wniosek wniosekRest) {
 
+
+
         int stan = wniosekRest.getStan();
 
         // Zmiana nazwy niedozwolona ?
