@@ -42,6 +42,8 @@ public class HistoryModificationsManager {
 
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         Date date = new Date();
+        if (opis == null)
+             opis = "";
         opis =  opis.concat(" " + dateFormat.format(date).toUpperCase());
         entityManager.persist(new Historiazmian(id_wniosku, stan, opis));
     }

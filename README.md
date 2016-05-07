@@ -12,6 +12,7 @@ EclipseLink
 
 do testów
 
+JUnit, RestAssured
 
 Postaæ JSON dla wniosku 
 Np.

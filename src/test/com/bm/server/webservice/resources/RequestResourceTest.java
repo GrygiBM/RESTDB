@@ -4,6 +4,7 @@ package com.bm.server.webservice.resources;
 import com.bm.server.webservice.guice.GuiceConfiguration;
 import com.google.inject.servlet.GuiceFilter;
 import com.jayway.restassured.http.ContentType;
+import com.jayway.restassured.response.Response;
 import com.sun.jersey.spi.container.servlet.ServletContainer;
 import org.apache.http.HttpStatus;
 import org.eclipse.jetty.server.Server;
@@ -63,9 +64,9 @@ public class RequestResourceTest extends JerseyTest {
     public void getWszystkieWnioski() throws Exception {
 
 
-                given().expect()
+        given().expect()
                 .response().statusCode(HttpStatus.SC_OK)
-                .when().get(BASE_URI  + "wnioski");
+                .when().get(BASE_URI + "wnioski");
 
 
     }
@@ -77,17 +78,20 @@ public class RequestResourceTest extends JerseyTest {
         Map<String, Object> jsonAsMap = new HashMap<>();
         jsonAsMap.put("id", 4);
         jsonAsMap.put("stan", 1);
-        jsonAsMap.put("nazwa","WniosekT");
-        jsonAsMap.put("tresc","Wniosek testowy ");
-        jsonAsMap.put("numer",null);
-        jsonAsMap.put("info",null);
+        jsonAsMap.put("nazwa", "WniosekT");
+        jsonAsMap.put("tresc", "Wniosek testowy ");
+        jsonAsMap.put("numer", null);
+        jsonAsMap.put("info", null);
 
-        given().
-                contentType(ContentType.JSON).
-                body(jsonAsMap).
-                when().
-                post("/wnioski");
 
+        Response response = given()
+                .body(jsonAsMap)
+                .contentType(ContentType.JSON)
+                .expect()
+//               .contentType(ContentType.JSON)
+//               .statusCode(javax.ws.rs.core.Response.Status.CREATED.getStatusCode())
+                .when()
+                .post(BASE_URI + "/wnioski");
     }
 
     @Test
@@ -96,16 +100,19 @@ public class RequestResourceTest extends JerseyTest {
         Map<String, Object> jsonAsMap = new HashMap<>();
         jsonAsMap.put("id", 4);
         jsonAsMap.put("stan", 2);
-        jsonAsMap.put("nazwa","WniosekT");
-        jsonAsMap.put("tresc","Wniosek testowy ");
-        jsonAsMap.put("numer",null);
-        jsonAsMap.put("info",null);
+        jsonAsMap.put("nazwa", "WniosekT");
+        jsonAsMap.put("tresc", "Wniosek testowy ");
+        jsonAsMap.put("numer", null);
+        jsonAsMap.put("info", null);
 
-        given().
-                contentType(ContentType.JSON).
-                body(jsonAsMap).
-                when().
-                put("/wnioski/4");
+        Response response = given()
+                .body(jsonAsMap)
+                .contentType(ContentType.JSON)
+                .expect()
+//                .contentType(ContentType.JSON)
+//                .statusCode(javax.ws.rs.core.Response.Status.ACCEPTED.getStatusCode())
+                .when()
+                .put("/wnioski/4");
 
     }
 
@@ -119,7 +126,7 @@ public class RequestResourceTest extends JerseyTest {
 
         given().expect()
                 .response().statusCode(HttpStatus.SC_OK)
-                .when().get(BASE_URI  + "wnioski/1");
+                .when().get(BASE_URI + "wnioski/1");
 
     }
 
