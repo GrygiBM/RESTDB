@@ -15,7 +15,7 @@ do testów
 
 Postaæ JSON dla wniosku 
 Np.
-{"id":1,"stan":1,"nazwa":"Wniosek startowy","tresc":"Przygotowanie wniosku do bazy danych danych ","numer":null,"info":null}
+{"id":1,"stan":1,"nazwa":"Wniosek startowy","tresc":"Przygotowanie wniosku do bazy danych danych ","numer":null,"info":"opis"}
 
 Stan jako liczba z zakresu 
 CREATED(1),
@@ -27,11 +27,11 @@ DELETED(6);
 
 Np  dane 
 Dla PUT 
-CREATED:{"id":1,"stan":1,"nazwa":"Wniosek startowy","tresc":"Przygotowanie wniosku do bazy danych danych ","numer":null,"info":null}
+CREATED:{"id":1,"stan":1,"nazwa":"Wniosek startowy","tresc":"Przygotowanie wniosku do bazy danych danych ","numer":null,"info":"opis"}
 
 
 Dla POST
-PUBLISHED: {"id":1,"stan":4,"nazwa":"Wniosek startowy","tresc":"Przygotowanie wniosku do bazy danych danych ","numer":null,"info":null}
+PUBLISHED: {"id":1,"stan":4,"nazwa":"Wniosek startowy","tresc":"Przygotowanie wniosku do bazy danych danych ","numer":null,"info":"opis"}
 
 Wykorzystano serwer Jetty st¹d mo¿liwoœæ bezpoœredniego uruchomiania
 endPointy:
