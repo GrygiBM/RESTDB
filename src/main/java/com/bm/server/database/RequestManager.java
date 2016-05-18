@@ -11,34 +11,39 @@ import java.util.List;
 
 
 @Singleton
-public class WniosekManager {
+public class RequestManager {
 
     private EntityManager entityManager;
 
     @Inject
-    public WniosekManager(EntityManager entityManager) {
+    public RequestManager(EntityManager entityManager) {
+
         this.entityManager = entityManager;
+//        EntityTransaction transaction = entityManager.getTransaction();
+//            transaction.begin();
+//            entityManager.persist(new Wniosek("WniosekT","Wniosek testowy "));
+//            transaction.commit();
     }
 
-    public List<Wniosek> getAllWnioski() {
+    public List<Wniosek> getAllRequests() {
         TypedQuery<Wniosek> typedQuery = entityManager.createQuery("SELECT a FROM Wniosek a", Wniosek.class);
         return typedQuery.getResultList();
     }
 
-    public List<Wniosek> getByNameWniosek(String nazwa) {
+    public List<Wniosek> getByNameRequest(String nazwa) {
         TypedQuery<Wniosek> typedQuery = entityManager.createNamedQuery("Wniosek.findByNazwa", Wniosek.class)
                 .setParameter("nazwa", nazwa);
         return typedQuery.getResultList();
     }
 
-    public List<Wniosek> getByStanWniosek(int stan) {
+    public List<Wniosek> getByStateRequest(int stan) {
         TypedQuery<Wniosek> typedQuery = entityManager.createNamedQuery("Wniosek.findByStan", Wniosek.class)
                 .setParameter("stan", stan);
         return typedQuery.getResultList();
     }
 
 
-    public void addWniosek(Wniosek wniosek) {
+    public void addRequest(Wniosek wniosek) {
         Wniosek nowyWniosek = new Wniosek(1, wniosek.getNazwa(), wniosek.getTresc());
         entityManager.getTransaction().begin();
         entityManager.persist(nowyWniosek);
@@ -46,7 +51,7 @@ public class WniosekManager {
         wniosek.setId(nowyWniosek.getId());
     }
 
-    public void editWniosek(Wniosek wniosek) {
+    public void editRequest(Wniosek wniosek) {
         entityManager.getTransaction().begin();
         entityManager.merge(wniosek);
         entityManager.getTransaction().commit();
@@ -69,7 +74,7 @@ public class WniosekManager {
     }
 
 
-    public Object getByNameAndStanWniosek(String nazwa, int stan) {
+    public Object getByNameAndStateRequest(String nazwa, int stan) {
         TypedQuery<Wniosek> typedQuery = entityManager.createNamedQuery("Wniosek.findByNameAndStan", Wniosek.class)
                 .setParameter("stan", stan)
                 .setParameter("nazwa",nazwa);

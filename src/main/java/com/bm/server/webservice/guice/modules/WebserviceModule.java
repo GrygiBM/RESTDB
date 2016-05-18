@@ -1,8 +1,8 @@
 package com.bm.server.webservice.guice.modules;
 
 import com.bm.server.webservice.jackson.CustomJacksonJaxbJsonProvider;
-import com.bm.server.webservice.resources.HistoriazmianResource;
-import com.bm.server.webservice.resources.WniosekResource;
+import com.bm.server.webservice.resources.HistoryModificationsResource;
+import com.bm.server.webservice.resources.RequestResource;
 import com.google.inject.servlet.ServletModule;
 import com.sun.jersey.guice.spi.container.servlet.GuiceContainer;
 import org.codehaus.jackson.jaxrs.JacksonJaxbJsonProvider;
@@ -15,8 +15,8 @@ public class WebserviceModule extends ServletModule {
     @Override
     protected void configureServlets() {
         // bindRestResources();
-        bind(HistoriazmianResource.class);
-        bind(WniosekResource.class);
+        bind(HistoryModificationsResource.class);
+        bind(RequestResource.class);
 
         bind(JacksonJaxbJsonProvider.class).to(CustomJacksonJaxbJsonProvider.class).asEagerSingleton();
 
@@ -29,8 +29,8 @@ public class WebserviceModule extends ServletModule {
      * bind the REST resources
      */
     protected void bindRestResources() {
-        bind(HistoriazmianResource.class);
-        bind(WniosekResource.class);
+        bind(HistoryModificationsResource.class);
+        bind(RequestResource.class);
     }
 
 }
